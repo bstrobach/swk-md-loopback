@@ -1,0 +1,46 @@
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+    text-transform: none;
+}
+
+.loopback-logo {
+    position: absolute;
+    top: -200px;
+    left: -50px;
+    width: 200px;
+}
+
+.swk-logo {
+    position: absolute;
+    top: -190px;
+    left: 800px;
+    width: 220px;
+}
+
+.reveal section img.no-border {
+    border: none;
+    box-shadow: none;
+}
+
+.reveal ul li.no-bullet {
+    list-style-type: none;
+}
+
+.reveal pre code.height550 {
+    max-height: 550px;
+}
+.reveal table.smallTable {
+    font-size: 80%;
+    margin-left: -65px;
+}
+
+.reveal section img.bjoern {
+    width: 200px;
+    position: absolute;
+    top: 20px;
+    left: 700px;
+}

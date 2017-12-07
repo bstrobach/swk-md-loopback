@@ -1,49 +1,351 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+    <title>LoopBack - A Node.js API Framework</title>
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/white.css">
+    <link rel="stylesheet" href="css/custom.css">
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
-		</div>
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.js"></script>
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
 
-		<script>
-			// More info about config & dependencies:
-			// - https://github.com/hakimel/reveal.js#configuration
-			// - https://github.com/hakimel/reveal.js#dependencies
-			Reveal.initialize({
-				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
-				]
-			});
-		</script>
-	</body>
+    </script>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section>
+
+                <h1>LoopBack</h1>
+                <h3>A Node.js API Framework</h3>
+                <p>
+                    <small>SWK Magdeburg - Bj&ouml;rn Strobach - Dezember 2017</small>
+                </p>
+
+                <img class="no-border loopback-logo" src="img/loopback.svg" alt="loopback-logo">
+                <img class="no-border swk-logo" src="img/SWK-Magdeburg_1024.png" alt="swk-logo">
+            </section>
+
+            <section>
+                <section>
+                    <h2>What is LoopBack?</h2>
+
+                    <blockquote class="fragment" cite="https://loopback.io">
+                        &ldquo;LoopBack is a highly-extensible, open-source Node.js framework&rdquo;
+                    </blockquote>
+                </section>
+                <section>
+                    <p>Quickly create dynamic end-to-end REST APIs.</p>
+                </section>
+                <section>
+                    <p>Connect devices and browsers to data and services.</p>
+                </section>
+                <section>
+                    <p>Use Android, iOS, and AngularJS SDKs to easily create client apps.</p>
+                </section>
+                <section>
+                    <p>Add-on components for file management, 3rd-party login, and OAuth2.</p>
+                </section>
+                <section>
+                    <p>Runs on-premises or in the cloud</p>
+                </section>
+            </section>
+
+            <section>
+                <section>
+                    <h2>Node.js</h2>
+                    <p class="fragment">Asynchronous event driven JavaScript runtime</p>
+                    <p class="fragment">Built on Chrome's V8 JavaScript engine</p>
+                    <p class="fragment">Designed to build scalable network applications</p>
+                </section>
+                <section>
+                    <h2>Simple Node.js server</h2>
+                    <pre><code class="hljs" data-trim>
+                                const http = require('http');
+
+                                const hostname = '127.0.0.1';
+                                const port = 3000;
+
+                                const server = http.createServer((req, res) => {
+                                  res.statusCode = 200;
+                                  res.setHeader('Content-Type', 'text/plain');
+                                  res.end('Hello World\n');
+                                });
+
+                                server.listen(port, hostname, () => {
+                                  console.log(`Server running at http://${hostname}:${port}/`);
+                                });
+                        </code></pre>
+                </section>
+                <section>
+                    <h2>How?</h2>
+                    <p class="fragment">Install
+                        <a href="https://nodejs.org">Node.js</a> (Better: use a Node version manager)</p>
+                    <p class="fragment">Save above content to a file (e.g.
+                        <code>app.js</code>) and run:</p>
+                    <pre class="fragment"><code class="hljs" style="word-wrap: break-word;">$ node app.js</code></pre>
+                    <p class="fragment">Visit
+                        <a href="http://127.0.0.1:3000">127.0.0.1:3000</a>
+                    </p>
+                </section>
+                <section>
+                    <h2>Demo</h2>
+                </section>
+            </section>
+
+            <section>
+                <section>
+                    <h2>Express.js</h2>
+                    <p class="fragment">Minimal and flexible Node.js framework</p>
+                    <p class="fragment">With a myriad of HTTP utility methods and middleware</p>
+                    <p class="fragment">Provides a thin layer of fundamental web application features, without obscuring Node.js features</p>
+                </section>
+                <section>
+                    <h2>Simple Express.js app</h2>
+                    <pre><code class="hljs" style="word-wrap: break-word;" data-trim>
+                        const express = require('express')
+                        const app = express()
+
+                        app.get('/', (req, res) => res.send('Hello World!'))
+
+                        app.listen(3000, () => console.log('Example app listening on port 3000!'))
+                    </code></pre>
+                </section>
+                <section>
+                    <h2>How?</h2>
+                    <p class="fragment">Install
+                        <a href="https://nodejs.org">Node.js</a> (Better: use a Node version manager)</p>
+                    <p class="fragment">Save above content to a file (e.g.
+                        <code>app.js</code>) and run:</p>
+                    <pre class="fragment"><code class="hljs" style="word-wrap: break-word;">$ npm i express &amp;&amp; node app.js</code></pre>
+                    <p class="fragment">Visit
+                        <a href="http://127.0.0.1:3000">127.0.0.1:3000</a>
+                    </p>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Express Generator</h2>
+                    <p class="fragment">Quickly create an application skeleton</p>
+                    <pre class="fragment"><code class="hljs" style="word-wrap: break-word;">$ npm i [-g] express-generator</code></pre>
+                    <pre class="fragment"><code class="hljs" style="word-wrap: break-word;">$ ./node_modules/.bin/express myApp</code></pre>
+                </section>
+                <section>
+                    <h2>Folder structure</h2>
+                    <pre><code class="hljs height550" style="word-wrap: break-word;" data-trim>
+                                .
+                                ├── app.js
+                                ├── bin
+                                │   └── www
+                                ├── package.json
+                                ├── public
+                                │   ├── images
+                                │   ├── javascripts
+                                │   └── stylesheets
+                                │       └── style.css
+                                ├── routes
+                                │   ├── index.js
+                                │   └── users.js
+                                └── views
+                                    ├── error.jade
+                                    ├── index.jade
+                                    └── layout.jade
+
+                                7 directories, 9 files
+                        </code></pre>
+                </section>
+                <section>
+                    <h2>Next steps</h2>
+                    <p class="fragment">Install dependencies</p>
+                    <pre class="fragment"><code class="hljs" style="word-wrap: break-word;">$ cd myApp &amp;&amp; npm i</code></pre>
+                    <p class="fragment">Run the app</p>
+                    <pre class="fragment"><code class="hljs" style="word-wrap: break-word;">$ DEBUG=myapp:* npm start</code></pre>
+                </section>
+                <section>
+                    <h2>Demo</h2>
+                </section>
+            </section>
+
+            <section>
+                <section>
+                    <h2>LoopBack</h2>
+                    <p class="fragment">A set of Node.js modules</p>
+                    <p class="fragment">Can be used independently or together</p>
+                </section>
+                <section>
+                    <h2>Overview of modules</h2>
+                    <p class="fragment">
+                        <img src="img/lb-modules.png" width="550" alt="lb-models">
+                    </p>
+                </section>
+            </section>
+            <section>
+                <h2>Most important concepts</h2>
+                <p class="fragment">Models</p>
+                <p class="fragment">Application logic</p>
+                <p class="fragment">Datasource and connectors</p>
+                <p class="fragment">LoopBack components</p>
+            </section>
+            <section>
+                <section>
+                    <h2>Models</h2>
+                    <p class="fragment">Represent backend data sources (such as databases or services like REST, SOAP)</p>
+                    <p class="fragment">JavaScript objects with Node and Rest-APIs</p>
+                    <p class="fragment">One base model object, with hooks and data validation methods</p>
+                    <p class="fragment">Connected to a data source Every model comes with a predefined REST API (full set of CRUD)</p>
+                </section>
+                <section>
+                    <h3>Built-in models</h3>
+                    <p class="fragment">Every LoopBack application comes with predefined built-in models</p>
+                    <p class="fragment">User, Role, and Application</p>
+                    <p class="fragment">So you don't have to create these common models from scratch</p>
+                </section>
+                <section>
+                    <h3>Custom Models</h3>
+                    <p class="fragment">Define own models specific to the application</p>
+                    <p class="fragment">One can extend the built-in models</p>
+                    <p class="fragment">Stored in model definition JSON file</p>
+                </section>
+                <section>
+                    <h3>Model relations</h3>
+                    <p class="fragment">One can define relations between models</p>
+                    <p class="fragment">E.g. BelongsTo, HasMany, HasAndBelongsToMany, and more</p>
+                </section>
+                <section>
+                    <h3>Model CRUD operations</h3>
+                    <table class="smallTable">
+                        <thead>
+                            <tr>
+                                <th>Operation</th>
+                                <th>REST</th>
+                                <th>LoopBack model method</th>
+                                <th>Corresponding SQL Operation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Create</td>
+                                <td>PUT|POST <code>/modelname</code></td>
+                                <td>create()</td>
+                                <td>INSERT</td>
+                            </tr>
+                            <tr>
+                                <td>Read (retrieve)</td>
+                                <td>GET <code>/modelName?filter=...</code></td>
+                                <td>find()</td>
+                                <td>SELECT</td>
+                            </tr>
+                            <tr>
+                                <td>Update (modify)</td>
+                                <td>PUT <code>/modelName</code></td>
+                                <td>updateAll()</td>
+                                <td>UPDATE</td>
+                            </tr>
+                            <tr>
+                                <td>Delete (destroy)</td>
+                                <td>DELETE <code>/modelName/modelID</code></td>
+                                <td>destroyByID()</td>
+                                <td>DELETE</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </section>
+            <section>
+                <h2>Application logic</h2>
+                <p class="fragment">Remote methods (custom REST endpoints)</p>
+                <p class="fragment">Remote hooks triggered by remote methods</p>
+                <p class="fragment">Operation hooks triggered by CRUD</p>
+                <p class="fragment">Boot scripts</p>
+                <p class="fragment">Middleware (Express)</p>
+            </section>
+            <section>
+                <h2>LoopBack components</h2>
+                <p class="fragment">Push notifications</p>
+                <p class="fragment">Storage components</p>
+                <p class="fragment">Third party login</p>
+                <p class="fragment">Synchronization</p>
+                <p class="fragment">OAuth2</p>
+            </section>
+
+            <section>
+                <section>
+                    <h2>Getting started</h2>
+                    <p class="fragment">Install <a href="https://nodejs.org">Node.js</a> (Better: use a Node version manager)</p>
+                    <p class="fragment">Install LoopBack CLI tool</p>
+                    <pre class="fragment"><code class="hljs" style="word-wrap: break-word;">$ npm i -g loopback-cli</code></pre>
+                    <p class="fragment">Run the LoopBack application generator</p>
+                    <pre class="fragment"><code class="hljs" style="word-wrap: break-word;">$ lb</code></pre>
+                </section>
+                <section>
+                    <h2>Demo</h2>
+                </section>
+            </section>
+
+
+
+            <section>
+                <section>
+                    <h2>Q &amp; A</h2>
+                </section>
+                <section>
+                    <h2>Thank you for your attention.</h2>
+                </section>
+                <section style="text-align: left;">
+                    <p>GitHub: <a href="https://github.com/bstrobach">@bstrobach</a></p>
+                    <p>Twitter: <a href="https://twitter.com/bmstr">@bmstr</a></p>
+                    <p>Xing: <a href="http://xing.to/bmstr">http://xing.to/bmstr</a></p>
+                    <hr>
+                    <p></p>Slides: <a href="https://bstrobach.github.io/loopback-swk-md/">https://bstrobach.github.io/loopback-swk-md/</a></p>
+                    <img class="bjoern" src="img/portfolio_foto_500.png" alt="bjoern-strobach">
+                </section>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+        // More info about config & dependencies:
+        // - https://github.com/hakimel/reveal.js#configuration
+        // - https://github.com/hakimel/reveal.js#dependencies
+        Reveal.initialize({
+            dependencies: [{
+                    src: 'plugin/markdown/marked.js'
+                },
+                {
+                    src: 'plugin/markdown/markdown.js'
+                },
+                {
+                    src: 'plugin/notes/notes.js',
+                    async: true
+                },
+                {
+                    src: 'plugin/highlight/highlight.js',
+                    async: true,
+                    callback: function () {
+                        hljs.initHighlightingOnLoad();
+                    }
+                }
+            ]
+        });
+
+    </script>
+</body>
+
 </html>
